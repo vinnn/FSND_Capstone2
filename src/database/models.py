@@ -35,8 +35,9 @@ https://flask.palletsprojects.com/en/1.1.x/patterns/appfactories/factories-exten
 #  POSTGRES SETUP  ###################################
 database_name = "db_capstone2"
 # IF LOCAL - path:
-database_path = "postgresql://{}/{}".format('localhost:5432', database_name)
+#database_path = "postgresql://{}/{}".format('localhost:5432', database_name)
 # IF DEPLOYMENT (TO HEROKU) - path:
+database_path = "postgres://dipxbxzeizwkwk:7c8373d60894aaaebb1e10380148f2b1dc1d2f9bafb3a62468b9effb1c7453e7@ec2-52-205-45-219.compute-1.amazonaws.com:5432/devh56majc5epu"
 # database_path = "postgres://nfkphcncctfhsr:28a0b6b1e059768d27a4f75e8034b9d8dfa36395ca7011c1614f28503974b6ac@ec2-54-195-246-55.eu-west-1.compute.amazonaws.com:5432/d69ah6men0oka"
 
 db = SQLAlchemy()
