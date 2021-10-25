@@ -9,7 +9,7 @@ from flask_cors import CORS
 
 #I### Imports from models and auth
 from .database.models import db_drop_and_create_all, setup_db, Actor
-#from .auth.auth import AuthError, requires_auth
+from .auth.auth import AuthError, requires_auth
 
 
 #########################################################
@@ -26,6 +26,17 @@ def create_app(test_config=None):
     CORS(app)
 
 
+
+
+
+
+
+
+
+##########################################################################
+##########################################################################
+##########################################################################
+##########################################################################
     #########################################################
     ## CORS Headers   [TO BE CHECKED]
     #########################################################
@@ -42,6 +53,19 @@ def create_app(test_config=None):
     # also insert @cross_origin() decorator where appropriate [TBC]
     #
     #
+##########################################################################
+##########################################################################
+##########################################################################
+##########################################################################
+
+
+
+
+
+
+
+
+
 
     #########################################################
     ## DROP ALL RECORDS AND START YOUR DB FROM SCRATCH
@@ -60,9 +84,9 @@ def create_app(test_config=None):
                 or error status code with reason for failure
     '''
     @app.route('/actors', methods=['GET'])
-    #@requires_auth(permission='get:actors')
-    def get_actors():
-    #def get_actors(payload):
+    @requires_auth(permission='get:actors')
+    #def get_actors():
+    def get_actors(payload):
         try:      
             actors = Actor.query.order_by(Actor.id).all()
             actors_array = [actor.todictionary() for actor in actors]
@@ -86,9 +110,9 @@ def create_app(test_config=None):
                 or error status code with reason for failure
     '''
     @app.route('/actors', methods=['POST'])
-    #@requires_auth(permission='post:actors')
-    #def post_actors(payload):
-    def post_actors():
+    @requires_auth(permission='post:actors')
+    def post_actors(payload):
+    #def post_actors():
         try:
             
             body = request.get_json()
@@ -124,9 +148,9 @@ def create_app(test_config=None):
                 or error status code with reason for failure
     '''
     @app.route('/actors/<int:id>', methods=['PATCH'])
-    #@requires_auth(permission='patch:actors')
-    #def patch_actors(payload, id):
-    def patch_actors(id):
+    @requires_auth(permission='patch:actors')
+    def patch_actors(payload, id):
+    #def patch_actors(id):
             
         actor_to_patch = Actor.query.filter(Actor.id == id).one_or_none()
         if actor_to_patch is None:
@@ -171,9 +195,9 @@ def create_app(test_config=None):
                 or error status code with reason for failure
     '''
     @app.route('/actors/<int:id>', methods=['DELETE'])
-    #@requires_auth(permission='delete:actors')
-    #def delete_actors(payload, id):
-    def delete_actors(id):
+    @requires_auth(permission='delete:actors')
+    def delete_actors(payload, id):
+    #def delete_actors(id):
             
         actor_to_delete = Actor.query.filter(Actor.id == id).one_or_none()
         if actor_to_delete is None:

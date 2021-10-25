@@ -111,7 +111,7 @@ def check_permissions(permission, payload):
 '''
 def verify_decode_jwt(token):
     # get the public key from Auth0
-    jsonurl = urlopen(f'https://fsnd-capstone-tenant.eu.auth0.com/.well-known/jwks.json')
+    jsonurl = urlopen(f'https://fsnd-capstone2-tenant.eu.auth0.com/.well-known/jwks.json')
     jwks = json.loads(jsonurl.read())
 
     # get the data from the token header
