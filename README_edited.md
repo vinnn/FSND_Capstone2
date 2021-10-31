@@ -9,7 +9,6 @@ The API does:
 1. Get, post, update and delete actors in the database
 2. Get, post, update and delete movies in the database
 
-#################################### TODO ####################################
 All backend code follows [PEP8 style guidelines] (https://www.python.org/dev/peps/pep-0008/)
 
 
@@ -17,7 +16,7 @@ All backend code follows [PEP8 style guidelines] (https://www.python.org/dev/pep
 
 ### API Base URL
 The API is deployed on Heroku server. 
-Base URL: #################################### TODO ####################################
+Base URL: https://fsnd-capstone2-heroku-app.herokuapp.com
 
 ### Authentication and Role-Based Access Control
 There are two roles with different permissions:
@@ -26,14 +25,8 @@ There are two roles with different permissions:
 - Executive Producer. Allowed to:
     - view, post, update and delete actors and movies.
 
-The JWT for the Casting Assistant:
-#################################### TODO ####################################
-
-
-The JWT for the Executive Producer:
-#################################### TODO ####################################
-eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjR0SlNOMDFwLXR0VzJMbXZFbVV1ZSJ9.eyJpc3MiOiJodHRwczovL2ZzbmQtY2Fwc3RvbmUyLXRlbmFudC5ldS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjE3MDg2NDM0MmNmYmUwMDY5MGRhMTI2IiwiYXVkIjoiZnNuZC1jYXBzdG9uZTItYXBpLWlkZW50aWZpZXIiLCJpYXQiOjE2MzU0NTYxMDQsImV4cCI6MTYzNTU0MjUwNCwiYXpwIjoiWkZQRDY1VlFHcGx3bUI3MEM2OG1KUklYRElXRWpvaWYiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphY3RvcnMiLCJkZWxldGU6bW92aWVzIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyIsInBvc3Q6bW92aWVzIl19.czBWcSJTsKVQHEYb232LJEtxJTSM2OXFJU0pAK7GDpCvZvjmCp4EcjqGdNQgHC5Xk5S67bQ3LHGTKw_Cz864o-xnXFwAbWQtYyo534nGy3RoHYLrGcNqvH0BzK5s30ArM3r1hwqBO5wUzdh7SZQ36bpzTJPU1QK8FBB8_WuElys41QT9R7pCsGPrKdFmn3-dCoB-I0ydzr8iaGFDxoSge16cGDysvr74mjp2ykYIQrG2H8DeEzWhdVs_CKJ676Yd5r5fFIBauLpeBN2zWg3Z0q2fYS_N5WcfzEX5bZKyaTj3JrZcyYM_W5pz2M-3JitU5iqwQMzfjIjt43YCh_y8ug
-
+The JWT for the Casting Assistant: see setup.sh
+The JWT for the Executive Producer: see setup.sh
 
 ### Run the API locally
 In order to run the API locally, navigate to the 'FSND_Capstone2' folder and run the following commands:
@@ -75,6 +68,27 @@ $ python3 -m src.test_api
 '''
 
 
+### Deploy the API on Heroku
+In order to deploy the API on Heroku, navigate to the 'FSND_Capstone2' folder and run the following commands:
+- Login Heroku:
+'''
+$ heroku login
+'''
+- Create the Heroku app:
+'''
+$ heroku create fsnd-capstone2-heroku-app
+'''
+- Create an Heroku database:
+'''
+$ heroku addons:create heroku-postgresql:hobby-dev
+'''
+- Deploy the app:
+$ git add .
+$ git commit -m 'comment'
+$ git push heroku master
+'''
+
+
 
 ## API Reference
 
@@ -99,220 +113,200 @@ The API will return three error types when requests fail:
 #### GET /actors
 - General:
     - Returns a list of actors names, age and gender, and a success value.
-- Sample: curl http://127.0.0.1:5000/actors
 
 '''
-{
-  "categories": {
-    "1": "Science", 
-    "2": "Art", 
-    "3": "Geography", 
-    "4": "History", 
-    "5": "Entertainment", 
-    "6": "Sports"
-  }, 
-  "success": true
-}
+[
+    {
+        "actors": [
+            {
+                "age": 55,
+                "gender": "Male",
+                "id": 1,
+                "name": "Eddie Dean"
+            },
+            {
+                "age": 35,
+                "gender": "Male",
+                "id": 2,
+                "name": "Tim Pum"
+            },
+            {
+                "age": 45,
+                "gender": "Female",
+                "id": 3,
+                "name": "Ella Shu"
+            },
+            {
+                "age": 30,
+                "gender": "Female",
+                "id": 4,
+                "name": "Dina Gove"
+            },
+            {
+                "age": 20,
+                "gender": "Female",
+                "id": 5,
+                "name": "Ola Titi"
+            }
+        ],
+        "success": true
+    },
+    200
+]
 '''
 
-
-#### GET /questions
+#### GET /movies
 - General:
-    - Returns the list of categories, the list of questions, the total number of questions and a success value.
-    - The list of questions returned is paginated in groups of 10. 
-- Sample: curl http://127.0.0.1:5000/questions
+    - Returns the list of movies (title and release date) and a success value.
 
 '''
-{
-  "categories": {
-    "1": "Science", 
-    "2": "Art", 
-    "3": "Geography", 
-    "4": "History", 
-    "5": "Entertainment", 
-    "6": "Sports"
-  }, 
-  "current_category": "", 
-  "questions": [
+[
     {
-      "answer": "The Liver", 
-      "category": 1, 
-      "difficulty": 4, 
-      "id": 20, 
-      "question": "What is the heaviest organ in the human body?"
-    }, 
-    {
-      "answer": "Escher", 
-      "category": 2, 
-      "difficulty": 1, 
-      "id": 16, 
-      "question": "Which Dutch graphic artist\u2013initials M C was a creator of optical illusions?"
-    }, 
-    {
-      "answer": "Jackson Pollock", 
-      "category": 2, 
-      "difficulty": 2, 
-      "id": 19, 
-      "question": "Which American artist was a pioneer of Abstract Expressionism, and a leading exponent of action painting?"
-    }, 
-    {
-      "answer": "One", 
-      "category": 2, 
-      "difficulty": 4, 
-      "id": 18, 
-      "question": "How many paintings did Van Gogh sell in his lifetime?"
-    }, 
-    {
-      "answer": "Mona Lisa", 
-      "category": 2, 
-      "difficulty": 3, 
-      "id": 17, 
-      "question": "La Giaconda is better known as what?"
-    }, 
-    {
-      "answer": "In England", 
-      "category": 3, 
-      "difficulty": 1, 
-      "id": 30, 
-      "question": "Where is London?"
-    }, 
-    {
-      "answer": "Lake Victoria", 
-      "category": 3, 
-      "difficulty": 2, 
-      "id": 13, 
-      "question": "What is the largest lake in Africa?"
-    }, 
-    {
-      "answer": "The Palace of Versailles", 
-      "category": 3, 
-      "difficulty": 3, 
-      "id": 14, 
-      "question": "In which royal palace would you find the Hall of Mirrors?"
-    }, 
-    {
-      "answer": "Agra", 
-      "category": 3, 
-      "difficulty": 2, 
-      "id": 15, 
-      "question": "The Taj Mahal is located in which Indian city?"
-    }, 
-    {
-      "answer": "Maya Angelou", 
-      "category": 4, 
-      "difficulty": 2, 
-      "id": 5, 
-      "question": "Whose autobiography is entitled 'I Know Why the Caged Bird Sings'?"
-    }
-  ], 
-  "success": true, 
-  "total_questions": 23
-}
+        "movies": [
+            {
+                "id": 1,
+                "release_date": "Sun, 29 Oct 2000 00:00:00 GMT",
+                "title": "James Bond 1"
+            },
+            {
+                "id": 2,
+                "release_date": "Wed, 03 Mar 2004 00:00:00 GMT",
+                "title": "James Bond 2"
+            },
+            {
+                "id": 3,
+                "release_date": "Fri, 06 Jun 2008 00:00:00 GMT",
+                "title": "James Bond 3"
+            },
+            {
+                "id": 4,
+                "release_date": "Sun, 01 Feb 1970 23:00:00 GMT",
+                "title": "Alice in Wonderland"
+            },
+            {
+                "id": 5,
+                "release_date": "Fri, 02 Feb 2018 00:00:00 GMT",
+                "title": "Upsy Daisy"
+            }
+        ],
+        "success": true
+    },
+    200
+]
 '''
 
-
-#### DELETE /questions/(question_id)
+#### DELETE /actors/(actor_id)
 - General:
-    - Delete the question with the id 'question_id' if it exists. Returns a deleted value, the id of the deleted question and a success value.
-- Sample: curl http://127.0.0.1:5000/questions/5 -X DELETE
+    - Delete the actor with the id 'actor_id' if it exists. Returns a deleted value, the id of the deleted actor and a success value.
 
 '''
-{
-  "deleted": true, 
-  "question_deleted_id": 5, 
-  "success": true
-}
-'''
-
-#### POST /questions
-- General:
-    - Creates a new question using the submitted question, answer, category and difficulty. 
-    Returns a created value, the id of the created question and a success value.
-- Sample: curl http://127.0.0.1:5000/questions -X POST -H "Content-Type: application/json" -d '{"question":"Who is Ted?", "answer": "the teacher", "category": 2, "difficulty": 1}' 
-
-'''
-{
-  "created": true, 
-  "created_question_id": 32, 
-  "success": true
-}
-'''
-
-#### POST /searched_questions
-- General:
-    - Searches a question that includes the searchTerm. 
-    Returns the list of questions that contain the searchTerm, the total number of questions found and a success value.
-- Sample: curl http://127.0.0.1:5000/searched_questions -X POST -H "Content-Type: application/json" -d '{"searchTerm":"heav"}' 
-
-'''
-{
-  "current_category": "", 
-  "questions": [
+[
     {
-      "answer": "The Liver", 
-      "category": 1, 
-      "difficulty": 4, 
-      "id": 20, 
-      "question": "What is the heaviest organ in the human body?"
-    }
-  ], 
-  "success": true, 
-  "total_questions": 1
-}
+        "actor": {
+            "age": 30,
+            "gender": "Female",
+            "id": 4,
+            "name": "Dina Gove"
+        },
+        "success": true
+    },
+    200
+]
 '''
 
-
-#### GET /categories/(category_id)/questions
+#### DELETE /movies/(movie_id)
 - General:
-    - Get all the questions for category 'category_id'
-    Returns the category, the list of questions in that category, the total number of questions in the category and a success value.
-- Sample: curl http://127.0.0.1:5000/categories/6/questions
+    - Delete the movie with the id 'movie_id' if it exists. Returns a deleted value, the id of the deleted movie and a success value.
 
 '''
-{
-  "current_category": 6, 
-  "questions": [
+[
     {
-      "answer": "Brazil", 
-      "category": 6, 
-      "difficulty": 3, 
-      "id": 10, 
-      "question": "Which is the only team to play in every soccer World Cup tournament?"
-    }, 
-    {
-      "answer": "Uruguay", 
-      "category": 6, 
-      "difficulty": 4, 
-      "id": 11, 
-      "question": "Which country won the first ever soccer World Cup in 1930?"
-    }
-  ], 
-  "success": true, 
-  "total_questions": 2
-}
+        "movie": {
+            "id": 4,
+            "release_date": "Sun, 01 Feb 1970 23:00:00 GMT",
+            "title": "Alice in Wonderland"
+        },
+        "success": true
+    },
+    200
+]
 '''
 
-
-#### POST /quizzes
+#### POST /actors
 - General:
-    - Get all the questions for category 'category_id'
-    Returns the category, the list of questions in that category, the total number of questions in the category and a success value.
-- Sample: curl http://127.0.0.1:5000/quizzes -X POST -H "Content-Type: application/json" -d '{"quiz_category":{"type":"Geography", "id":"3"}, "previous_questions":[]}' 
+    - Creates a new actor (name, age and gender). 
+    Returns a created value, the id of the created actor and a success value.
 
 '''
-{
-  "previousQuestions": [
-    30
-  ], 
-  "question": {
-    "answer": "In England", 
-    "category": 3, 
-    "difficulty": 1, 
-    "id": 30, 
-    "question": "Where is London?"
-  }, 
-  "success": true
-}
+[
+    {
+        "actor": {
+            "age": 70,
+            "gender": "Male",
+            "id": 6,
+            "name": "Didier Nala"
+        },
+        "success": true
+    },
+    200
+]
+'''
+
+#### POST /movies
+- General:
+    - Creates a new movie (title and release_date). 
+    Returns a created value, the id of the created movie and a success value.
+
+'''
+[
+    {
+        "movie": {
+            "id": 6,
+            "release_date": "Mon, 07 Jul 1980 00:00:00 GMT",
+            "title": "Happy Ferry"
+        },
+        "success": true
+    },
+    200
+]
+'''
+
+#### PATCH /actors/(actor_id)
+- General:
+    - Updates the actor with the id 'actor_id' if it exists (name, age and gender). 
+    Returns a created value, the id of the updated actor and a success value.
+
+'''[
+    {
+        "actor": {
+            "age": 99,
+            "gender": "Female",
+            "id": 2,
+            "name": "Filipa"
+        },
+        "success": true
+    },
+    200
+]
+'''
+
+#### PATCH /movies/(movie_id)
+- General:
+    - Updates the movie with the id 'movie_id' if it exists (title and release_date). 
+    Returns a created value, the id of the updated movie and a success value.
+
+'''
+[
+    {
+        "movie": {
+            "id": 2,
+            "release_date": "Wed, 01 Jan 2003 00:00:00 GMT",
+            "title": "James Bond 2"
+        },
+        "success": true
+    },
+    200
+]
 '''
 
 
