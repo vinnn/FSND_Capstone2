@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "51d1b3a2-32d9-4c2d-b49c-075be07edc4f",
+		"name": "ExecutiveProducer(Heroku)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://fsnd-capstone2-heroku-app.herokuapp.com/actors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://fsnd-capstone2-heroku-app.herokuapp.com/actors",
+					"protocol": "https",
+					"host": [
+						"fsnd-capstone2-heroku-app",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"actors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://fsnd-capstone2-heroku-app.herokuapp.com/actors",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Gerry\", \"age\": 38, \"gender\": \"Male\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://fsnd-capstone2-heroku-app.herokuapp.com/actors",
+					"protocol": "https",
+					"host": [
+						"fsnd-capstone2-heroku-app",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"actors"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjR0SlNOMDFwLXR0VzJMbXZFbVV1ZSJ9.eyJpc3MiOiJodHRwczovL2ZzbmQtY2Fwc3RvbmUyLXRlbmFudC5ldS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjE3MDg2NDM0MmNmYmUwMDY5MGRhMTI2IiwiYXVkIjoiZnNuZC1jYXBzdG9uZTItYXBpLWlkZW50aWZpZXIiLCJpYXQiOjE2MzUxOTU1ODIsImV4cCI6MTYzNTI4MTk4MiwiYXpwIjoiWkZQRDY1VlFHcGx3bUI3MEM2OG1KUklYRElXRWpvaWYiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphY3RvcnMiLCJkZWxldGU6bW92aWVzIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvcnMiLCJwYXRjaDptb3ZpZXMiLCJwb3N0OmFjdG9ycyIsInBvc3Q6bW92aWVzIl19.BJ5bgmn5FwJQzrUCoU8nbf6W7SZRYEBdnITwaJ5NuMRKm3o8UQ_xwQhBUNAyIaDg0KLyagq12gj_dE0rMbx7CTI6Fojowz3NGFJGOrH2WsX3TuiAxcU8A_O1KT_w8xn3tSdhl_Pl-HtIrB7FL7L6aUtCvY5qKG74m1UrDGnfkFMeLDJjj8I5fNhjg7kjErEz_Umd0WnJrFwI4_o7VibI52wGMHQay46koEx69pUls_2EAsBqGTUCF5JtCmJQnDmnOpY1jdU-x07GxM-kBFsjI8nKgqWbL1AdJX128l0CZ46kJ8uOsRDALKfccC1LBqUv6mfR-aBw_79ZYEJynJ2uZQ",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
